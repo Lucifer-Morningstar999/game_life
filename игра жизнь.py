@@ -6,6 +6,18 @@ def print_mass(a):
     os.system("cls")
     for i in a:
         print(i)
+def tick(n, m):
+	global entries
+	temp = [[False for col in range(m)] for row in range(n)]
+
+	for row in range(n):
+		for col in range(m):
+			if neighboard(row, col) == 3:
+				temp[row][col] = True
+			elif entries[row][col] == True and neighboard(row, col) == 2:
+				temp[row][col] = True
+			else:
+				temp[row][col] = False
 
 def my_count(a, i, j):
     res = 0
