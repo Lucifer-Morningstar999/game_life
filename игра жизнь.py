@@ -1,4 +1,5 @@
 import os
+from tkinter import *
 import random
 import time
 
@@ -6,6 +7,19 @@ def print_mass(a):
     os.system("cls")
     for i in a:
         print(i)
+        
+def tick(n, m):
+	global entries
+	temp = [[False for col in range(m)] for row in range(n)]
+
+	for row in range(n):
+		for col in range(m):
+			if neighboard(row, col) == 3:
+				temp[row][col] = True
+			elif entries[row][col] == True and neighboard(row, col) == 2:
+				temp[row][col] = True
+			else:
+				temp[row][col] = False
 
 def my_count(a, i, j):
     res = 0
@@ -29,8 +43,15 @@ def my_count(a, i, j):
 
 os.system("cls")
 
-n = 30
+n = 10
 a = []
+
+wind = Tk()
+wind.geometry('300x300')
+wind.resizable(width=False, height=False)
+wind.title("Жизнь")
+wind['bg'] = 'grey22'
+
 #while True:  
 for i in range(n):
     a.append([random.randrange(2) for i in range(n)]) #генерировали в каждом элементе массива другой массив длинной в m
@@ -47,8 +68,9 @@ while True:
                 temp[i][j] = 0
     a = temp.copy()
     print_mass(a)
+    wind.mainloop()
     time.sleep(2)
+
 #print (my_count(a,i,j))
     #time.sleep(0.9)
 #print("==============================")
-
